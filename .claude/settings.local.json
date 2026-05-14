@@ -12,7 +12,12 @@
       "Bash(pnpm why *)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(pnpm exec *)",
+      "PowerShell(Move-Item *)",
+      "Bash(pnpm typecheck *)",
+      "Bash(pnpm lint *)",
+      "Bash(node_modules/.bin/next --help)"
     ]
   }
 }

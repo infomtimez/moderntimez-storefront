@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# local docs (moved here during scaffold)
+/_docs
+
 # debug
 npm-debug.log*
 yarn-debug.log*
