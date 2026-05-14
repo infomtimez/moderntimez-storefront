@@ -1,21 +1,62 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+const slides = [
+  { src: "/images/Hero_image1.png", alt: "ModernTimez personalized gifts" },
+  { src: "/images/Hero_image2.png", alt: "ModernTimez engraved awards" },
+];
 
 export function Hero() {
+  const [current, setCurrent] = useState(0);
+  const [prev, setPrev] = useState<number | null>(null);
+  const [animating, setAnimating] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => advance(1), 6000);
+    return () => clearInterval(timer);
+  }, [current]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function advance(dir: 1 | -1) {
+    if (animating) return;
+    setPrev(current);
+    setAnimating(true);
+    setCurrent((c) => (c + dir + slides.length) % slides.length);
+    setTimeout(() => {
+      setPrev(null);
+      setAnimating(false);
+    }, 900);
+  }
+
   return (
     <section className="relative min-h-[90vh] overflow-hidden bg-[#0d1117]">
-      {/* Background image */}
-      <Image
-        src="/images/Hero_image1.png"
-        alt="ModernTimez personalized gifts"
-        fill
-        priority
-        className="object-cover object-center"
-        sizes="100vw"
-      />
+      {/* Slides */}
+      {slides.map((slide, i) => {
+        const isActive = i === current;
+        const isPrev = i === prev;
+        if (!isActive && !isPrev) return null;
+        return (
+          <div
+            key={slide.src}
+            className="absolute inset-0 transition-opacity duration-[900ms] ease-in-out"
+            style={{ opacity: isActive ? 1 : 0 }}
+          >
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              fill
+              priority={i === 0}
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+          </div>
+        );
+      })}
 
-      {/* Dark overlay so text stays readable */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0d1117]/90 via-[#0d1117]/70 to-[#0d1117]/30" />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0d1117]/90 via-[#0d1117]/65 to-[#0d1117]/25" />
 
       {/* Brass top edge */}
       <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-[#c9a45c] to-transparent opacity-60" />
@@ -72,6 +113,72 @@ export function Hero() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Carousel controls */}
+      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 items-center gap-6">
+        {/* Prev */}
+        <button
+          onClick={() => advance(-1)}
+          aria-label="Previous slide"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-[#e5e1d8]/20 text-[#e5e1d8]/60 transition-colors hover:border-[#c9a45c] hover:text-[#c9a45c]"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          >
+            <path d="M10 3L5 8l5 5" />
+          </svg>
+        </button>
+
+        {/* Dots */}
+        <div className="flex gap-2">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                if (!animating) {
+                  setPrev(current);
+                  setAnimating(true);
+                  setCurrent(i);
+                  setTimeout(() => {
+                    setPrev(null);
+                    setAnimating(false);
+                  }, 900);
+                }
+              }}
+              aria-label={`Go to slide ${i + 1}`}
+              className="h-1.5 rounded-full transition-all duration-300"
+              style={{
+                width: i === current ? "24px" : "6px",
+                backgroundColor:
+                  i === current ? "#c9a45c" : "rgba(229,225,216,0.3)",
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Next */}
+        <button
+          onClick={() => advance(1)}
+          aria-label="Next slide"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-[#e5e1d8]/20 text-[#e5e1d8]/60 transition-colors hover:border-[#c9a45c] hover:text-[#c9a45c]"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          >
+            <path d="M6 3l5 5-5 5" />
+          </svg>
+        </button>
       </div>
     </section>
   );
