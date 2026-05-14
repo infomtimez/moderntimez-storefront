@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm -v)",
+      "Bash(git --version)",
+      "Bash(npm install *)",
+      "Bash(pnpm create *)",
+      "Bash(mkdir \"K:\\\\ModernTimez\\\\new website project\\\\2026web\\\\_docs\")",
+      "Bash(Move-Item \"K:\\\\ModernTimez\\\\new website project\\\\2026web\\\\ModernTimez_Website_Build_Brief.md\" \"K:\\\\ModernTimez\\\\new website project\\\\2026web\\\\_docs\\\\\" && Move-Item \"K:\\\\ModernTimez\\\\new website project\\\\2026web\\\\ModernTimez website remodeling\" \"K:\\\\ModernTimez\\\\new website project\\\\2026web\\\\_docs\\\\\")",
+      "Bash(pnpm install *)",
+      "Bash(pnpm add *)",
+      "Bash(pnpm why *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color — neutrals */
+  --color-bg: oklch(98% 0.005 95);
+  --color-fg: oklch(20% 0.01 95);
+  --color-muted: oklch(55% 0.01 95);
+  --color-line: oklch(90% 0.005 95);
+
+  /* Brand (placeholders — replace with final palette) */
+  --color-brand-50:  oklch(96% 0.015 60);
+  --color-brand-500: oklch(45% 0.08 60);
+  --color-brand-900: oklch(20% 0.04 60);
+
+  /* Typography */
+  --font-display: "Söhne Halbfett", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Radii, motion */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+}

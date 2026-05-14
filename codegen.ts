@@ -1,0 +1,22 @@
+import type { CodegenConfig } from "@graphql-codegen/cli";
+
+const config: CodegenConfig = {
+  schema: {
+    [`https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/${process.env.SHOPIFY_STOREFRONT_API_VERSION ?? "2025-04"}/graphql.json`]:
+      {
+        headers: {
+          "X-Shopify-Storefront-Access-Token":
+            process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN!,
+        },
+      },
+  },
+  documents: ["src/**/*.{ts,tsx}", "!src/lib/shopify/types.generated.ts"],
+  generates: {
+    "src/lib/shopify/types.generated.ts": {
+      plugins: ["typescript", "typescript-operations"],
+      config: { avoidOptionals: true, skipTypename: false },
+    },
+  },
+};
+
+export default config;
