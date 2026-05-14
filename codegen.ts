@@ -1,4 +1,7 @@
+import { config as loadEnv } from "dotenv";
 import type { CodegenConfig } from "@graphql-codegen/cli";
+
+loadEnv({ path: ".env.local" });
 
 const config: CodegenConfig = {
   schema: {
@@ -10,6 +13,7 @@ const config: CodegenConfig = {
         },
       },
   },
+  ignoreNoDocuments: true,
   documents: ["src/**/*.{ts,tsx}", "!src/lib/shopify/types.generated.ts"],
   generates: {
     "src/lib/shopify/types.generated.ts": {

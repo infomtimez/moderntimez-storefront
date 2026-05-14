@@ -17,7 +17,15 @@
       "PowerShell(Move-Item *)",
       "Bash(pnpm typecheck *)",
       "Bash(pnpm lint *)",
-      "Bash(node_modules/.bin/next --help)"
+      "Bash(node_modules/.bin/next --help)",
+      "Bash(gh auth *)",
+      "Bash(gh repo *)",
+      "Bash(vercel --version)",
+      "Bash(where vercel *)",
+      "Bash(vercel whoami *)",
+      "Bash(npx vercel *)",
+      "Bash(pnpm dev *)",
+      "Bash(pnpm codegen *)"
     ]
   }
 }
