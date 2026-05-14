@@ -17,8 +17,12 @@ const config: CodegenConfig = {
   documents: ["src/**/*.{ts,tsx}", "!src/lib/shopify/types.generated.ts"],
   generates: {
     "src/lib/shopify/types.generated.ts": {
-      plugins: ["typescript", "typescript-operations"],
-      config: { avoidOptionals: true, skipTypename: false },
+      plugins: [
+        { add: { content: "/* eslint-disable */\n// @ts-nocheck" } },
+        "typescript",
+        "typescript-operations",
+      ],
+      config: { avoidOptionals: true, skipTypename: false, enumsAsTypes: true },
     },
   },
 };

@@ -25,7 +25,12 @@
       "Bash(vercel whoami *)",
       "Bash(npx vercel *)",
       "Bash(pnpm dev *)",
-      "Bash(pnpm codegen *)"
+      "Bash(pnpm codegen *)",
+      "Bash(git push *)",
+      "Bash(sed -n '3110,3120p' \"K:\\\\ModernTimez\\\\new website project\\\\2026web\\\\src\\\\lib\\\\shopify\\\\types.generated.ts\")",
+      "Bash(sed -n '10150,10160p' \"K:\\\\ModernTimez\\\\new website project\\\\2026web\\\\src\\\\lib\\\\shopify\\\\types.generated.ts\")",
+      "Bash(sed -n '3100,3108p' \"K:\\\\ModernTimez\\\\new website project\\\\2026web\\\\src\\\\lib\\\\shopify\\\\types.generated.ts\")",
+      "Bash(sed -n '10078,10086p' \"K:\\\\ModernTimez\\\\new website project\\\\2026web\\\\src\\\\lib\\\\shopify\\\\types.generated.ts\")"
     ]
   }
 }
