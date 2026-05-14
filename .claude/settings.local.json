@@ -31,7 +31,8 @@
       "Bash(sed -n '10150,10160p' \"K:\\\\ModernTimez\\\\new website project\\\\2026web\\\\src\\\\lib\\\\shopify\\\\types.generated.ts\")",
       "Bash(sed -n '3100,3108p' \"K:\\\\ModernTimez\\\\new website project\\\\2026web\\\\src\\\\lib\\\\shopify\\\\types.generated.ts\")",
       "Bash(sed -n '10078,10086p' \"K:\\\\ModernTimez\\\\new website project\\\\2026web\\\\src\\\\lib\\\\shopify\\\\types.generated.ts\")",
-      "Bash(node --env-file=.env.local -e ' *)"
+      "Bash(node --env-file=.env.local -e ' *)",
+      "Bash(curl *)"
     ]
   }
 }
