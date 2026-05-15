@@ -23,6 +23,13 @@ export const metadata: Metadata = {
   },
   description:
     "Custom engraved personalized gifts, corporate awards, realtor closing gifts, and baptism keepsakes. Premium precision engraving crafted in Texas.",
+  openGraph: {
+    siteName: "ModernTimez",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({

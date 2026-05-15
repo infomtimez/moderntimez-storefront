@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileNav } from "./MobileNav";
 
 const nav = [
   { label: "Shop Gifts", href: "/collections/frontpage" },
@@ -21,7 +22,7 @@ export function Header() {
           >
             MODERNTIMEZ
           </span>
-          <span className="mt-0.5 text-[10px] tracking-[0.3em] text-[#c9a45c] uppercase">
+          <span className="mt-0.5 text-[10px] uppercase tracking-[0.3em] text-[#c9a45c]">
             Personalized Gifts &amp; Awards
           </span>
         </Link>
@@ -39,8 +40,8 @@ export function Header() {
           ))}
         </nav>
 
-        {/* CTAs */}
-        <div className="flex items-center gap-3">
+        {/* Actions */}
+        <div className="flex items-center gap-2">
           <Link
             href="/request-quote"
             className="hidden rounded border border-[#c9a45c] px-4 py-2 text-sm tracking-wide text-[#c9a45c] transition-colors hover:bg-[#c9a45c] hover:text-[#0d1117] sm:block"
@@ -65,6 +66,7 @@ export function Header() {
               <path d="M16 10a4 4 0 0 1-8 0" />
             </svg>
           </Link>
+          <MobileNav />
         </div>
       </div>
     </header>

@@ -25,7 +25,7 @@ export function CorporateAwardsSection() {
             >
               Recognition That Inspires
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-[#6b6560]">
+            <p className="mt-5 text-lg leading-relaxed text-[#a09890]">
               Custom engraved plaques, crystal awards, trophies, and executive
               gifts for teams, leaders, and milestone achievements.
             </p>
@@ -48,12 +48,13 @@ export function CorporateAwardsSection() {
           {/* Category grid */}
           <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:mt-0">
             {categories.map((cat) => (
-              <div
+              <Link
                 key={cat}
-                className="rounded-lg border border-[#2a3545] p-5 text-center"
+                href="/collections/corporate-awards"
+                className="rounded-lg border border-[#2a3545] p-5 text-center transition-colors hover:border-[#c9a45c]"
               >
                 <p className="text-sm font-medium text-[#e5e1d8]">{cat}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

@@ -3,7 +3,7 @@ import { getCollection } from "@/lib/shopify";
 import { ProductCard } from "@/components/commerce/ProductCard";
 
 export async function BestSellers() {
-  const collection = await getCollection("frontpage");
+  const collection = await getCollection("frontpage").catch(() => null);
   const products = collection?.products.edges.slice(0, 8) ?? [];
 
   return (

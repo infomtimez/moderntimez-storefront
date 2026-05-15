@@ -12,7 +12,7 @@ export function ProductCard({ product }: { product: ProductCardItem }) {
 
   return (
     <Link href={`/products/${product.handle}`} className="group block">
-      <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
+      <div className="aspect-square overflow-hidden rounded-lg bg-[#f0ebe2]">
         {product.featuredImage ? (
           <Image
             src={product.featuredImage.url as string}
@@ -22,14 +22,16 @@ export function ProductCard({ product }: { product: ProductCardItem }) {
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full items-center justify-center text-sm text-gray-400">
+          <div className="flex h-full items-center justify-center text-sm text-[#6b6560]">
             No image
           </div>
         )}
       </div>
       <div className="mt-3 space-y-1">
-        <p className="text-sm font-medium leading-snug">{product.title}</p>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm font-medium leading-snug text-[#0d1117]">
+          {product.title}
+        </p>
+        <p className="text-sm text-[#6b6560]">
           {product.availableForSale ? price : "Sold out"}
         </p>
       </div>

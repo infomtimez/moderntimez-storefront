@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const slides = [
   { src: "/images/Hero_image1.png", alt: "ModernTimez personalized gifts" },
   { src: "/images/Hero_image2.png", alt: "ModernTimez engraved awards" },
+  { src: "/images/Hero_image3.png", alt: "ModernTimez corporate gifts" },
 ];
 
 export function Hero() {
@@ -14,10 +15,8 @@ export function Hero() {
   const [prev, setPrev] = useState<number | null>(null);
   const [animating, setAnimating] = useState(false);
 
-  useEffect(() => {
-    const timer = setInterval(() => advance(1), 6000);
-    return () => clearInterval(timer);
-  }, [current]); // eslint-disable-line react-hooks/exhaustive-deps
+  // Ref holds the latest advance so the interval never needs to re-register
+  const advanceFn = useRef<(dir: 1 | -1) => void>(() => {});
 
   function advance(dir: 1 | -1) {
     if (animating) return;
@@ -30,8 +29,36 @@ export function Hero() {
     }, 900);
   }
 
+  useLayoutEffect(() => {
+    advanceFn.current = advance;
+  });
+
+  function goTo(i: number) {
+    if (animating || i === current) return;
+    setPrev(current);
+    setAnimating(true);
+    setCurrent(i);
+    setTimeout(() => {
+      setPrev(null);
+      setAnimating(false);
+    }, 900);
+  }
+
+  useEffect(() => {
+    const timer = setInterval(() => advanceFn.current(1), 6000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative min-h-[90vh] overflow-hidden bg-[#0d1117]">
+    <section
+      className="relative min-h-[90vh] overflow-hidden bg-[#0d1117]"
+      aria-label="Featured images"
+    >
+      {/* Announce slide changes to screen readers */}
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {slides[current].alt}
+      </div>
+
       {/* Slides */}
       {slides.map((slide, i) => {
         const isActive = i === current;
@@ -40,6 +67,7 @@ export function Hero() {
         return (
           <div
             key={slide.src}
+            aria-hidden={!isActive}
             className="absolute inset-0 transition-opacity duration-[900ms] ease-in-out"
             style={{ opacity: isActive ? 1 : 0 }}
           >
@@ -140,18 +168,9 @@ export function Hero() {
           {slides.map((_, i) => (
             <button
               key={i}
-              onClick={() => {
-                if (!animating) {
-                  setPrev(current);
-                  setAnimating(true);
-                  setCurrent(i);
-                  setTimeout(() => {
-                    setPrev(null);
-                    setAnimating(false);
-                  }, 900);
-                }
-              }}
+              onClick={() => goTo(i)}
               aria-label={`Go to slide ${i + 1}`}
+              aria-pressed={i === current}
               className="h-1.5 rounded-full transition-all duration-300"
               style={{
                 width: i === current ? "24px" : "6px",

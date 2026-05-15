@@ -26,7 +26,7 @@ const columns = [
     heading: "Services",
     links: [
       { label: "Custom Engraving", href: "/personalization" },
-      { label: "Bulk Orders", href: "/request-quote" },
+      { label: "Bulk Orders", href: "/bulk" },
       { label: "Logo Engraving", href: "/personalization/logo-engraving" },
       { label: "Corporate Recognition", href: "/collections/corporate-awards" },
       {
@@ -40,7 +40,6 @@ const columns = [
     heading: "Company",
     links: [
       { label: "About ModernTimez", href: "/about" },
-      { label: "Our Craftsmanship", href: "/about" },
       { label: "Stories", href: "/stories" },
       { label: "Privacy Policy", href: "/policies/privacy" },
       { label: "Terms of Service", href: "/policies/terms" },
@@ -52,7 +51,6 @@ export function Footer() {
   return (
     <footer className="bg-[#0d1117] text-[#e5e1d8]">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        {/* Top */}
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-5">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
@@ -62,7 +60,7 @@ export function Footer() {
             >
               MODERNTIMEZ
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-[#6b6560]">
+            <p className="mt-4 text-sm leading-relaxed text-[#a09890]">
               Personalized engraving and meaningful gifts crafted with care in
               Texas since 2006.
             </p>
@@ -82,10 +80,10 @@ export function Footer() {
               </h3>
               <ul className="space-y-2">
                 {col.links.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.href + link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-[#6b6560] transition-colors hover:text-[#e5e1d8]"
+                      className="text-sm text-[#a09890] transition-colors hover:text-[#e5e1d8]"
                     >
                       {link.label}
                     </Link>
@@ -96,12 +94,11 @@ export function Footer() {
           ))}
         </div>
 
-        {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[#1e2530] pt-8 sm:flex-row">
-          <p className="text-xs text-[#6b6560]">
+          <p className="text-xs text-[#a09890]">
             &copy; {new Date().getFullYear()} ModernTimez. All rights reserved.
           </p>
-          <p className="text-xs text-[#6b6560]">
+          <p className="text-xs text-[#a09890]">
             Premium personalized gifts &amp; awards &mdash; crafted in Texas
           </p>
         </div>

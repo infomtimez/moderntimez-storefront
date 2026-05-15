@@ -1,13 +1,24 @@
-const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
-const token = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN!;
-const version = process.env.SHOPIFY_STOREFRONT_API_VERSION ?? "2025-04";
-const endpoint = `https://${domain}/api/${version}/graphql.json`;
+function getStorefrontConfig() {
+  const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
+  const token = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN;
+  const version = process.env.SHOPIFY_STOREFRONT_API_VERSION ?? "2025-04";
+
+  if (!domain || !token) {
+    throw new Error("Missing Shopify storefront configuration");
+  }
+
+  return {
+    endpoint: `https://${domain}/api/${version}/graphql.json`,
+    token,
+  };
+}
 
 export async function storefront<T>(
   query: string,
   variables: Record<string, unknown> = {},
   tags: string[] = [],
 ): Promise<T> {
+  const { endpoint, token } = getStorefrontConfig();
   const res = await fetch(endpoint, {
     method: "POST",
     headers: {

@@ -1,18 +1,18 @@
 import Link from "next/link";
 import { PageShell } from "@/components/layout/PageShell";
 
-export default function BulkPage() {
+export default function NotFound() {
   return (
     <PageShell
-      eyebrow="Services"
-      title="Bulk Orders"
-      intro="For teams, events, client programs, and recognition initiatives, we help coordinate engraved gifts at scale."
+      eyebrow="Not Found"
+      title="We could not find that page"
+      intro="The link may be outdated, or the item may no longer be available."
     >
       <Link
-        href="/request-quote"
+        href="/"
         className="inline-block rounded bg-[#0d1117] px-6 py-3 text-sm font-semibold tracking-wide text-[#f7f1e6] transition-colors hover:bg-[#101a24]"
       >
-        Request a Bulk Quote
+        Return Home
       </Link>
     </PageShell>
   );

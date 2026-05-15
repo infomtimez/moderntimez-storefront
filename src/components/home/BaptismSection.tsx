@@ -19,12 +19,13 @@ export function BaptismSection() {
           {/* Category tags */}
           <div className="order-2 mt-12 flex flex-wrap gap-2 lg:order-1 lg:mt-0">
             {gifts.map((gift) => (
-              <span
+              <Link
                 key={gift}
-                className="rounded border border-[#2a3040] px-4 py-2 text-sm text-[#e5e1d8]"
+                href="/collections/baptism-gifts"
+                className="rounded border border-[#2a3040] px-4 py-2 text-sm text-[#e5e1d8] transition-colors hover:border-[#c9a45c]"
               >
                 {gift}
-              </span>
+              </Link>
             ))}
           </div>
 
@@ -39,7 +40,7 @@ export function BaptismSection() {
             >
               Keepsakes for Sacred Moments
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-[#6b6560]">
+            <p className="mt-5 text-lg leading-relaxed text-[#a09890]">
               Personalized brass compasses, cross wooden boxes, and religious
               keepsakes engraved with names, dates, Bible verses, and heartfelt
               messages.

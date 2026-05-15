@@ -70,7 +70,7 @@ export function ShopByPurpose() {
                 {cat.label}
               </p>
               <div>
-                <p className="mb-4 text-sm leading-relaxed text-[#6b6560]">
+                <p className="mb-4 text-sm leading-relaxed text-[#a09890]">
                   {cat.description}
                 </p>
                 <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a45c] transition-opacity group-hover:opacity-80">

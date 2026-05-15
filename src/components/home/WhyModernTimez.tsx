@@ -60,7 +60,7 @@ export function WhyModernTimez() {
               >
                 {pillar.title}
               </h3>
-              <p className="text-sm leading-relaxed text-[#6b6560]">
+              <p className="text-sm leading-relaxed text-[#a09890]">
                 {pillar.description}
               </p>
             </div>
