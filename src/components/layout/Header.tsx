@@ -15,7 +15,7 @@ const nav = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[#2a3040] bg-[#0d1117]">
+    <header className="sticky top-0 z-50 border-b border-[#2a3040] bg-[#33261c]">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center">
