@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { getCollection } from "@/lib/shopify";
+import { getAllProducts } from "@/lib/shopify";
 import { ProductCard } from "@/components/commerce/ProductCard";
 
 export async function BestSellers() {
-  const collection = await getCollection("frontpage").catch(() => null);
-  const products = collection?.products.edges.slice(0, 8) ?? [];
+  const products = await getAllProducts(8).catch(() => []);
 
   return (
     <section className="bg-[#f7f1e6] py-20">
@@ -31,16 +30,17 @@ export async function BestSellers() {
 
         {products.length > 0 ? (
           <ul className="grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
-            {products.map(({ node }) => (
+            {products.map((node) => (
               <li key={node.id}>
-                <ProductCard product={node} />
+                <ProductCard
+                  product={node as Parameters<typeof ProductCard>[0]["product"]}
+                />
               </li>
             ))}
           </ul>
         ) : (
           <p className="py-12 text-center text-[#6b6560]">
-            Products coming soon. Add products to your Shopify store to see them
-            here.
+            Products coming soon.
           </p>
         )}
 

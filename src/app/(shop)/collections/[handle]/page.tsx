@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getCollection } from "@/lib/shopify";
+import { getCollection, getAllProducts } from "@/lib/shopify";
 import { ProductCard } from "@/components/commerce/ProductCard";
 
 export async function generateMetadata({
@@ -9,8 +9,16 @@ export async function generateMetadata({
   params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
   const { handle } = await params;
-  const collection = await getCollection(handle).catch(() => null);
 
+  if (handle === "frontpage") {
+    return {
+      title: "Shop All Gifts",
+      description:
+        "Browse all personalized gifts and engraved awards from ModernTimez.",
+    };
+  }
+
+  const collection = await getCollection(handle).catch(() => null);
   if (!collection) return { title: "Collection Not Found" };
 
   return {
@@ -26,8 +34,45 @@ export default async function CollectionPage({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
-  const collection = await getCollection(handle).catch(() => null);
 
+  if (handle === "frontpage") {
+    const products = await getAllProducts(48).catch(() => null);
+    if (!products) notFound();
+
+    return (
+      <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <header className="mb-10">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9a45c]">
+            Shop All
+          </p>
+          <h1
+            className="text-4xl font-light tracking-tight text-[#0d1117] sm:text-5xl"
+            style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
+          >
+            All Personalized Gifts
+          </h1>
+        </header>
+
+        {products.length === 0 ? (
+          <p className="py-16 text-center text-[#6b6560]">
+            Products coming soon.
+          </p>
+        ) : (
+          <ul className="grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
+            {products.map((node) => (
+              <li key={node.id}>
+                <ProductCard
+                  product={node as Parameters<typeof ProductCard>[0]["product"]}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
+      </main>
+    );
+  }
+
+  const collection = await getCollection(handle).catch(() => null);
   if (!collection) notFound();
 
   return (
