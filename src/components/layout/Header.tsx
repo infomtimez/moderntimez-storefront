@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MobileNav } from "./MobileNav";
+import { CartCount } from "./CartCount";
 
 const nav = [
   { label: "Shop Gifts", href: "/collections/frontpage" },
@@ -50,7 +52,7 @@ export function Header() {
           </Link>
           <Link
             href="/cart"
-            className="flex h-9 w-9 items-center justify-center rounded text-[#e5e1d8] hover:text-[#c9a45c]"
+            className="relative flex h-9 w-9 items-center justify-center rounded text-[#e5e1d8] hover:text-[#c9a45c]"
             aria-label="Cart"
           >
             <svg
@@ -65,6 +67,9 @@ export function Header() {
               <line x1="3" y1="6" x2="21" y2="6" />
               <path d="M16 10a4 4 0 0 1-8 0" />
             </svg>
+            <Suspense>
+              <CartCount />
+            </Suspense>
           </Link>
           <MobileNav />
         </div>

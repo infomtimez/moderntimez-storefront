@@ -6,9 +6,14 @@ import { addItemToCart } from "@/lib/cart-actions";
 type Props = {
   variantId: string | undefined;
   availableForSale: boolean;
+  engravingText?: string;
 };
 
-export function AddToCart({ variantId, availableForSale }: Props) {
+export function AddToCart({
+  variantId,
+  availableForSale,
+  engravingText,
+}: Props) {
   const [pending, startTransition] = useTransition();
   const [added, setAdded] = useState(false);
 
@@ -26,7 +31,7 @@ export function AddToCart({ variantId, availableForSale }: Props) {
   function handleClick() {
     if (!variantId) return;
     startTransition(async () => {
-      await addItemToCart(variantId!);
+      await addItemToCart(variantId!, 1, engravingText || undefined);
       setAdded(true);
       setTimeout(() => setAdded(false), 2500);
     });

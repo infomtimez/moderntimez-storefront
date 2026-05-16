@@ -12,19 +12,27 @@ import {
 const CART_COOKIE = "cartId";
 const COOKIE_OPTIONS = {
   httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
   sameSite: "lax" as const,
   path: "/",
   maxAge: 60 * 60 * 24 * 30,
 };
 
-export async function addItemToCart(variantId: string, quantity = 1) {
+export async function addItemToCart(
+  variantId: string,
+  quantity = 1,
+  engravingText?: string,
+) {
   const store = await cookies();
   const existingCartId = store.get(CART_COOKIE)?.value;
+  const attributes = engravingText?.trim()
+    ? [{ key: "Engraving Text", value: engravingText.trim() }]
+    : undefined;
 
   if (existingCartId) {
-    await cartLinesAdd(existingCartId, variantId, quantity);
+    await cartLinesAdd(existingCartId, variantId, quantity, attributes);
   } else {
-    const cart = await createCart(variantId, quantity);
+    const cart = await createCart(variantId, quantity, attributes);
     store.set(CART_COOKIE, cart.id, COOKIE_OPTIONS);
   }
 

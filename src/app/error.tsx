@@ -3,11 +3,13 @@
 import Link from "next/link";
 
 export default function Error({
+  error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  console.error(error);
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
       <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9a45c]">

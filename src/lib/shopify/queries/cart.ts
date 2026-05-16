@@ -9,6 +9,10 @@ export const GetCartQuery = /* GraphQL */ `
           node {
             id
             quantity
+            attributes {
+              key
+              value
+            }
             merchandise {
               ... on ProductVariant {
                 id

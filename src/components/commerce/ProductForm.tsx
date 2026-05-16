@@ -27,6 +27,7 @@ export function ProductForm({ options, variants }: Props) {
   const [selectedOptions, setSelectedOptions] = useState<
     Record<string, string>
   >(() => Object.fromEntries(options.map((o) => [o.name, o.values[0]])));
+  const [engravingText, setEngravingText] = useState("");
 
   const selectedVariant = variants.find((v) =>
     v.selectedOptions.every((so) => selectedOptions[so.name] === so.value),
@@ -76,9 +77,32 @@ export function ProductForm({ options, variants }: Props) {
         </div>
       ))}
 
+      <div className="mt-6">
+        <label
+          htmlFor="engraving-text"
+          className="mb-2 block text-sm font-semibold tracking-wide text-[#0d1117]"
+        >
+          Engraving Text{" "}
+          <span className="text-xs font-normal text-[#6b6560]">(optional)</span>
+        </label>
+        <textarea
+          id="engraving-text"
+          value={engravingText}
+          onChange={(e) => setEngravingText(e.target.value)}
+          placeholder="Enter name, date, or message to engrave…"
+          rows={3}
+          maxLength={200}
+          className="w-full rounded border border-[#e5e1d8] px-4 py-3 text-sm text-[#0d1117] placeholder-[#a09890] focus:border-[#c9a45c] focus:outline-none"
+        />
+        <p className="mt-1 text-right text-xs text-[#a09890]">
+          {engravingText.length}/200
+        </p>
+      </div>
+
       <AddToCart
         variantId={selectedVariant?.id}
         availableForSale={selectedVariant?.availableForSale ?? false}
+        engravingText={engravingText}
       />
     </div>
   );

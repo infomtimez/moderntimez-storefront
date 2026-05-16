@@ -7,9 +7,12 @@ import {
   CartLinesUpdateMutation,
 } from "./queries/cart";
 
+type CartLineAttribute = { key: string; value: string };
+
 export type CartLine = {
   id: string;
   quantity: number;
+  attributes: CartLineAttribute[];
   merchandise: {
     id: string;
     title: string;
@@ -50,12 +53,13 @@ export async function fetchCart(cartId: string): Promise<Cart | null> {
 export async function createCart(
   variantId: string,
   quantity: number,
+  attributes?: CartLineAttribute[],
 ): Promise<{ id: string; checkoutUrl: string }> {
+  const line: Record<string, unknown> = { merchandiseId: variantId, quantity };
+  if (attributes?.length) line.attributes = attributes;
   const data = await storefront<{
     cartCreate: { cart: { id: string; checkoutUrl: string } };
-  }>(CartCreateMutation, {
-    lines: [{ merchandiseId: variantId, quantity }],
-  });
+  }>(CartCreateMutation, { lines: [line] });
   return data.cartCreate.cart;
 }
 
@@ -63,11 +67,11 @@ export async function cartLinesAdd(
   cartId: string,
   variantId: string,
   quantity: number,
+  attributes?: CartLineAttribute[],
 ): Promise<void> {
-  await storefront(CartLinesAddMutation, {
-    cartId,
-    lines: [{ merchandiseId: variantId, quantity }],
-  });
+  const line: Record<string, unknown> = { merchandiseId: variantId, quantity };
+  if (attributes?.length) line.attributes = attributes;
+  await storefront(CartLinesAddMutation, { cartId, lines: [line] });
 }
 
 export async function cartLinesRemove(

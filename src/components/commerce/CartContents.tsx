@@ -45,6 +45,13 @@ export function CartContents({ cart }: { cart: Cart }) {
                       {line.merchandise.title}
                     </p>
                   )}
+                  {line.attributes
+                    .filter((a) => a.value)
+                    .map((a) => (
+                      <p key={a.key} className="mt-0.5 text-xs text-[#a09890]">
+                        {a.key}: {a.value}
+                      </p>
+                    ))}
                 </div>
                 <p className="shrink-0 text-sm font-medium text-[#0d1117]">
                   {formatMoney(

@@ -1,6 +1,6 @@
 function getStorefrontConfig() {
   const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
-  const token = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN;
+  const token = process.env.SHOPIFY_STOREFRONT_API_TOKEN;
   const version = process.env.SHOPIFY_STOREFRONT_API_VERSION ?? "2025-04";
 
   if (!domain || !token) {
