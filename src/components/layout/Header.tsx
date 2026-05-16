@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { MobileNav } from "./MobileNav";
 
@@ -15,16 +16,15 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-[#2a3040] bg-[#0d1117]">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="flex flex-col leading-none">
-          <span
-            className="text-2xl font-semibold tracking-widest text-[#f7f1e6]"
-            style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-          >
-            MODERNTIMEZ
-          </span>
-          <span className="mt-0.5 text-[10px] uppercase tracking-[0.3em] text-[#c9a45c]">
-            Personalized Gifts &amp; Awards
-          </span>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/images/logo.png"
+            alt="ModernTimez"
+            width={160}
+            height={48}
+            className="h-12 w-auto"
+            priority
+          />
         </Link>
 
         {/* Desktop nav */}

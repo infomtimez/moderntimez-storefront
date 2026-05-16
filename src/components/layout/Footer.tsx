@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const columns = [
@@ -54,12 +55,13 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-5">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
-            <p
-              className="text-xl font-semibold tracking-widest text-[#f7f1e6]"
-              style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-            >
-              MODERNTIMEZ
-            </p>
+            <Image
+              src="/images/logo.png"
+              alt="ModernTimez"
+              width={140}
+              height={42}
+              className="h-10 w-auto"
+            />
             <p className="mt-4 text-sm leading-relaxed text-[#a09890]">
               Personalized engraving and meaningful gifts crafted with care in
               Texas since 2006.
